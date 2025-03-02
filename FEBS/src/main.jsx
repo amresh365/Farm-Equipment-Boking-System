@@ -1,15 +1,24 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./store";
 import "./index.css";
 import App from "./App.jsx";
+import EquipmentDetailsScreen from "./screen/EquipmentDetailsScreen.jsx";
+import EquipmentListScreen from "./screen/EquipmentListScreen.jsx";
+import LoginScreen from "./screen/LoginScreen.jsx";
+import RegisterComponent from "./screen/SighnupScreen.jsx";
+import HowItWork from "./screen/HowItWork.jsx";
 
 const appRouter = createBrowserRouter([
   { path: "/", element: <App /> },
-  { path: "/about", element: <About /> },
-  { path: "/eqipment/:id", element: <EquipmetDetails /> },
-  { path: "/login", element: <LogInComponent /> },
-  { path: "/login/register", element: <RegisterComponent /> },
+  { path: "/eqipment/:id", element: <EquipmentDetailsScreen /> },
+  { path: "/equipment", element: <EquipmentListScreen /> },
+  { path: "/login", element: <LoginScreen /> },
+  { path: "/register", element: <RegisterComponent /> },
+  { path: "/howItWork", element: <HowItWork /> },
+
   { errorElement: <div>Oops, an error occurred!</div> }, // Changed from <errorElement />
 ]);
 

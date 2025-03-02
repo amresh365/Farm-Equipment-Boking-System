@@ -1,6 +1,22 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  margin: 0 px;
+  padding: 0 px;
+}
+
+.footer {
+  /* width: rem; */
+}
+
+@media screen and (max-width: 568px) {
+  .footer {
+    width: 30rem;
+  }
+}
+@media screen and (max-width: 568px) {
+  .hero {
+    width: 30rem;
+  }
+  .hero-content {
+    flex-direction: column;
+  }
 }
