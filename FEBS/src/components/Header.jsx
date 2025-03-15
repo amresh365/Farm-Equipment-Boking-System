@@ -7,7 +7,6 @@ const Header = () => {
   const navigationLinks = [
     { name: "Equipment", href: "/equipment" },
     { name: "How It Works", href: "/howItWork" },
-    { name: "Owners", href: "#" },
   ];
 
   return (

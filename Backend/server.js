@@ -4,7 +4,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import connectDB from "./config/db.js";
 import dotenv from "dotenv";
-
+import { equipmentList } from "./data/Equipments.js";
 const app = express();
 dotenv.config();
 const PORT = process.env.PORT || 5000;
@@ -19,8 +19,20 @@ app.use(cookieParser());
 
 app.use(cors());
 
-app.get("/", (req, res) => {
-  res.send("Hello to Memories API");
+app.get("/api/equipments", (req, res) => {
+  res.json(equipmentList);
+});
+
+app.get("/api/equipments/:id", (req, res) => {
+  const equip = equipmentList.find(
+    (element) => element.id.toString() === req.params.id
+  );
+
+  if (equip) {
+    res.json(equip); // Re spond with the product if found
+  } else {
+    res.status(404).json({ message: "Product not found" }); // Handle case where product is not found
+  }
 });
 
 app.listen(PORT, () => console.log(`Server running on port: ${PORT}`));

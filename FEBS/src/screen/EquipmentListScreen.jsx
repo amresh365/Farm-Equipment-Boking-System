@@ -1,5 +1,7 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
+import { equipmentList } from "../data/Equipments";
+import { useGetEquipmentQuery } from "../slices/equipmentApiSlice";
 const EquipmentListScreen = () => {
   const [selectedFilters, setSelectedFilters] = useState({
     equipmentType: "",
@@ -7,32 +9,27 @@ const EquipmentListScreen = () => {
     location: "",
     availability: "",
   });
-
-  // Mock data - replace with API data
-  const equipmentList = [
-    {
-      id: 1,
-      name: "Mahindra 475 DI Tractor",
-      type: "Tractor",
-      dailyRate: 2500,
-      rating: 4.5,
-      specs: {
-        horsepower: "45 HP",
-        fuelType: "Diesel",
-        hoursUsed: 1200,
-      },
-      location: "Punjab",
-      image: "/tractor.jpg",
-      availability: ["2023-08-20", "2023-08-25"],
-    },
-    // Add more equipment items
-  ];
+  const { data: equipments, isLoading, isError } = useGetEquipmentQuery();
+  console.log(equipments);
+  const navigate = useNavigate();
+  const goToHomeHandler = () => {
+    navigate("/");
+  };
+  const onClickHandler = (id) => {
+    navigate(`/equipment/${id}`);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 pt-16">
       {" "}
       {/* Account for fixed header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <button
+          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors mb-5"
+          onClick={goToHomeHandler}
+        >
+          Go Back
+        </button>
         {/* Filters Section */}
         <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -54,19 +51,6 @@ const EquipmentListScreen = () => {
             </select>
 
             {/* Price Range */}
-            <div className="flex items-center space-x-2">
-              <input
-                type="number"
-                placeholder="Min Price"
-                className="w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
-              />
-              <span className="text-gray-500">-</span>
-              <input
-                type="number"
-                placeholder="Max Price"
-                className="w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
-              />
-            </div>
 
             {/* Location Filter */}
             <input
@@ -133,32 +117,22 @@ const EquipmentListScreen = () => {
                 <div className="flex justify-between items-center">
                   <div>
                     <span className="text-xl font-bold text-green-600">
-                      ₹{equipment.dailyRate}
+                      ₹{equipment.rate}
                     </span>
-                    <span className="text-sm text-gray-500">/day</span>
+                    <span className="text-sm text-gray-500">
+                      /{equipment.rateType}
+                    </span>
                   </div>
-                  <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                  <button
+                    className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors"
+                    onClick={() => onClickHandler(equipment.id)}
+                  >
                     Book Now
                   </button>
                 </div>
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Pagination */}
-        <div className="mt-8 flex justify-center">
-          <nav className="inline-flex rounded-md shadow-sm">
-            <button className="px-4 py-2 border border-gray-300 rounded-l-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
-              Previous
-            </button>
-            <button className="px-4 py-2 border border-gray-300 text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
-              1
-            </button>
-            <button className="px-4 py-2 border border-gray-300 rounded-r-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
-              Next
-            </button>
-          </nav>
         </div>
       </div>
     </div>

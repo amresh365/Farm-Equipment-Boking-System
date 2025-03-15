@@ -10,14 +10,16 @@ import EquipmentListScreen from "./screen/EquipmentListScreen.jsx";
 import LoginScreen from "./screen/LoginScreen.jsx";
 import RegisterComponent from "./screen/SighnupScreen.jsx";
 import HowItWork from "./screen/HowItWork.jsx";
+import BookingScreen from "./screen/BookingScreen.jsx";
 
 const appRouter = createBrowserRouter([
   { path: "/", element: <App /> },
-  { path: "/eqipment/:id", element: <EquipmentDetailsScreen /> },
+  { path: "/equipment/:id", element: <EquipmentDetailsScreen /> },
   { path: "/equipment", element: <EquipmentListScreen /> },
   { path: "/login", element: <LoginScreen /> },
   { path: "/register", element: <RegisterComponent /> },
   { path: "/howItWork", element: <HowItWork /> },
+  { path: "/equipment/book", element: <BookingScreen /> },
 
   { errorElement: <div>Oops, an error occurred!</div> }, // Changed from <errorElement />
 ]);

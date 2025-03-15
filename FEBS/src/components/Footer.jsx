@@ -18,7 +18,7 @@ const Footer = () => {
                 Equipment
               </a>
               <a
-                href="#"
+                href="/howItWork"
                 className="block hover:text-green-500 transition-colors"
               >
                 How it Works
