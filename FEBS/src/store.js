@@ -8,7 +8,7 @@ const store = configureStore({
   reducer: {
     [apiSlice.reducerPath]: apiSlice.reducer,
     auth: authSliceReducer,
-    bookEquipment: bookEquipSliceReducer,
+    bookEquipments: bookEquipSliceReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(

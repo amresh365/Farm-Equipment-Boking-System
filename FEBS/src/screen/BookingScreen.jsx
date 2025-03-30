@@ -14,15 +14,14 @@ const BookingScreen = () => {
   });
 
   const { id, bookingAddress, date, time } = useSelector(
-    (state) => state.bookEquipment
+    (state) => state.bookEquipments
   );
 
-  console.log(id);
   const {
     data: equipment,
     isLoading,
     isError,
-  } = useGetEquipmentDetailsQuery(1);
+  } = useGetEquipmentDetailsQuery(id);
   // console.log(equipment);
 
   // const handleSubmit = (e) => {

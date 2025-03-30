@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useGetEquipmentDetailsQuery } from "../slices/equipmentApiSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { equipmentList } from "../data/Equipments";
-import { bookEquipment } from "../slices/bookEquipSlice";
+import { myEquipment } from "../slices/bookEquipSlice";
 const EquipmentDetailScreen = () => {
   const [selectedDates, setSelectedDates] = useState({
     start: null,
@@ -32,8 +32,8 @@ const EquipmentDetailScreen = () => {
   ];
 
   const navigate = useNavigate();
-  const { selectedEquipment } = useSelector((state) => state.bookEquipment);
-  // console.log(selectedEquipment);
+  const { selectedEquipments } = useSelector((state) => state.bookEquipments);
+  console.log(selectedEquipments);
   console.log(selectedDates.start);
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -53,9 +53,7 @@ const EquipmentDetailScreen = () => {
   };
 
   const onClickHandler = () => {
-    dispatch(
-      bookEquipment({ id, bookingAddress, selectedDates, selectedTime })
-    );
+    dispatch(myEquipment({ id, bookingAddress, selectedDates, selectedTime }));
     navigate("/equipment/book");
   };
 

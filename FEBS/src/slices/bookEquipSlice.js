@@ -16,7 +16,7 @@ const bookEquipSlice = createSlice({
   name: "order",
   initialState,
   reducers: {
-    bookEquipment: (state, action) => {
+    myEquipment: (state, action) => {
       // Assuming action.payload contains the details needed to update the state
       const { id, bookingAddress, selectedDates, selectedTime } =
         action.payload;
@@ -32,5 +32,5 @@ const bookEquipSlice = createSlice({
   },
 });
 
-export const { bookEquipment } = orderSlice.actions;
+export const { myEquipment } = bookEquipSlice.actions;
 export default bookEquipSlice.reducer;
