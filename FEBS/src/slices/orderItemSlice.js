@@ -32,5 +32,5 @@ const orderSlice = createSlice({
   },
 });
 
-export const { bookEquipment } = orderSlice.actions; // Don't forget to export your actions
+export const { bookEquipment } = orderSlice.actions;
 export default orderSlice.reducer;
