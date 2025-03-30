@@ -1,23 +1,18 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { StarIcon } from "@heroicons/react/24/solid";
+import { EqualsIcon, StarIcon } from "@heroicons/react/24/solid";
 import { useNavigate, useParams } from "react-router-dom";
+import { useGetEquipmentDetailsQuery } from "../slices/equipmentApiSlice";
+import { useSelector, useDispatch } from "react-redux";
 import { equipmentList } from "../data/Equipments";
+import { bookEquipment } from "../slices/orderItemSlice";
 const EquipmentDetailScreen = () => {
-  const navigate = useNavigate();
-  const onClickHandler = () => {
-    navigate("/equipment/book");
-  };
-  const { id } = useParams();
-  const [selectedDates, setSelectedDates] = useState({
-    start: null,
-  });
-  const [activeImage, setActiveImage] = useState(0);
-  const [bookingAddress, setBookingAddress] = useState({});
+  const [selectedDates, setSelectedDates] = useState("");
+  const [bookingAddress, setBookingAddress] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
-  const [equipment, setEquipment] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [bookedTimes] = useState(["10:00 AM", "02:00 PM"]); // Example booked times
+  const isBooked = (time) => bookedTimes.includes(time);
+  const isSelected = (time) => time === selectedTime;
   // Generate time slots (adjust as needed)
   const timeSlots = [
     "09:00 AM",
@@ -34,6 +29,19 @@ const EquipmentDetailScreen = () => {
     "08:00 PM",
   ];
 
+  const navigate = useNavigate();
+  const { selectedEquipment } = useSelector((state) => state.orderEquipment);
+  console.log(selectedEquipment);
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const {
+    data: equipment,
+    isLoading,
+    isError,
+  } = useGetEquipmentDetailsQuery(id);
+
+  // console.log(equipment);
+
   const handleTimeSelect = (time) => {
     if (!isBooked(time)) {
       setSelectedTime(time);
@@ -41,20 +49,24 @@ const EquipmentDetailScreen = () => {
     }
   };
 
-  const isBooked = (time) => bookedTimes.includes(time);
-  const isSelected = (time) => time === selectedTime;
+  const onClickHandler = () => {
+    dispatch(
+      bookEquipment({ id, bookingAddress, selectedDates, selectedTime })
+    );
+    navigate("/equipment/book");
+  };
 
-  useEffect(() => {
-    setLoading(true);
-    const equip = equipmentList.find((element) => element.id == id);
-    setEquipment(equip);
-    setLoading(false);
-  }, [id]);
+  // useEffect(() => {
+  //   setLoading(true);
+  //   const equip = equipmentList.find((element) => element.id == id);
+  //   setEquipment(equip);
+  //   setLoading(false);
+  // }, [id]);
 
   return (
     <div className="min-h-screen bg-gray-50 pt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {loading ? (
+        {isLoading ? (
           <div>loading</div>
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -183,12 +195,7 @@ const EquipmentDetailScreen = () => {
                       <input
                         type="date"
                         className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                        onChange={(e) =>
-                          setSelectedDates({
-                            ...selectedDates,
-                            start: e.target.value,
-                          })
-                        }
+                        onChange={(e) => setSelectedDates(...selectedDates)}
                       />
                     </div>
                   </div>
@@ -231,6 +238,7 @@ const EquipmentDetailScreen = () => {
                         className=""
                         placeholder="Enter Address"
                         value={bookingAddress}
+                        onChange={(e) => setBookingAddress(e.target.value)}
                       />
                     </div>
                   </div>

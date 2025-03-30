@@ -1,15 +1,27 @@
 import React from "react";
 import { useState } from "react";
-
+import { useLoginMutation } from "../slices/userApiSlice";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setCredentials } from "../slices/authSlice";
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-
-  const handleSubmit = (e) => {
+  const [login] = useLoginMutation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const res = useSelector((state) => state.auth.userInfo);
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle login logic
+    try {
+      const user = await login(formData).unwrap();
+      dispatch(setCredentials({ ...user }));
+      navigate("/");
+    } catch (error) {
+      alert(error?.data?.message || "Login failed");
+    }
   };
 
   return (

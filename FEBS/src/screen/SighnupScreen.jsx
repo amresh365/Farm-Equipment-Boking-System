@@ -1,7 +1,8 @@
 import React from "react";
-
 import { useState } from "react";
-
+import { useRegisterMutation } from "../slices/userApiSlice";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 const SighnupScreen = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -9,12 +10,27 @@ const SighnupScreen = () => {
     password: "",
     confirmPassword: "",
     phone: "",
-    role: "farmer",
+    role: "",
   });
 
-  const handleSubmit = (e) => {
+  console.log(formData.role);
+  const [register] = useRegisterMutation();
+  const navigate = useNavigate();
+  // const dispatch = useDispatch();
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle registration logic
+
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    try {
+      await register(formData).unwrap();
+      navigate("/login");
+    } catch (error) {
+      alert(error?.data?.message || "Registration failed");
+    }
   };
 
   return (

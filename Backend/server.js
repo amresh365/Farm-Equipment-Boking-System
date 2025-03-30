@@ -1,9 +1,9 @@
 import express from "express";
-import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import connectDB from "./config/db.js";
 import dotenv from "dotenv";
+import userRoute from "./routs/userRoute.js";
 import { equipmentList } from "./data/Equipments.js";
 const app = express();
 dotenv.config();
@@ -34,5 +34,7 @@ app.get("/api/equipments/:id", (req, res) => {
     res.status(404).json({ message: "Product not found" }); // Handle case where product is not found
   }
 });
+
+app.use("/api/users", userRoute);
 
 app.listen(PORT, () => console.log(`Server running on port: ${PORT}`));

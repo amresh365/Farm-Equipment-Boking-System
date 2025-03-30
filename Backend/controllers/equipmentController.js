@@ -1,10 +1,11 @@
 import asyncHandler from "../middleware/asyncHandler.js";
-import { equipmentList } from "../data/Equipments.js";
+import Product from "../modals/productModal.js";
+import { asyncHandler } from "../middleware/asyncHandler";
 // import Product from "../modals/productModal.js";
 //@desc Fetch All Product
 //@ route GET/api/products
 //@ access Public
-const getProduct = asyncHandler(async (req, res) => {
+const getEquipments = asyncHandler(async (req, res) => {
   const products = await Product.find({});
   res.json(products);
 });
@@ -12,7 +13,7 @@ const getProduct = asyncHandler(async (req, res) => {
 //@desc Fetch Product By Id
 //@ route GET/api/products/:Id
 //@ access Public
-const getProductById = asyncHandler(async (req, res) => {
+const getEquipmentById = asyncHandler(async (req, res) => {
   const product = await Product.findById(req.params.id);
   if (product) {
     res.json(product);
@@ -37,4 +38,4 @@ const getProductById = asyncHandler(async (req, res) => {
 //   res.status(201).json(createProduct);
 // });
 
-export { getProduct, getProductById };
+export { getEquipments, getEquipmentById };
