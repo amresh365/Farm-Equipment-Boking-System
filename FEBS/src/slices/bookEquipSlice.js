@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = (() => {
   try {
-    const savedCart = localStorage.getItem("order");
+    const savedCart = localStorage.getItem("selectedEquip");
     return savedCart
       ? JSON.parse(savedCart)
       : { id: "", bookingAddress: "", date: "", time: "" };
@@ -12,7 +12,7 @@ const initialState = (() => {
   }
 })();
 
-const orderSlice = createSlice({
+const bookEquipSlice = createSlice({
   name: "order",
   initialState,
   reducers: {
@@ -22,15 +22,15 @@ const orderSlice = createSlice({
         action.payload;
 
       state.id = id || state.id; // Update id or retain existing
-      state.bookingAddress = bookingAddress || state.bookingAddress; // Update shippingAddress
+      state.bookingAddress = bookingAddress || state.bookingAddress; // Update bookingAddress
       state.date = selectedDates || state.date; // Update date
       state.time = selectedTime || state.time; // Update time
 
       // Optionally, you might want to save the updated state back to localStorage
-      localStorage.setItem("order", JSON.stringify(state));
+      localStorage.setItem("selectedEquip", JSON.stringify(state));
     },
   },
 });
 
 export const { bookEquipment } = orderSlice.actions;
-export default orderSlice.reducer;
+export default bookEquipSlice.reducer;

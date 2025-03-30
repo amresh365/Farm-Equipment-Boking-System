@@ -2,13 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import { apiSlice } from "./slices/apiSlice";
 import authSliceReducer from "./slices/authSlice";
 import { equipmentApiSlice } from "./slices/equipmentApiSlice";
-import orderSliceReducer from "./slices/orderItemSlice";
+import bookEquipSliceReducer from "./slices/bookEquipSlice";
 
 const store = configureStore({
   reducer: {
     [apiSlice.reducerPath]: apiSlice.reducer,
     auth: authSliceReducer,
-    orderEquipment: orderSliceReducer,
+    bookEquipment: bookEquipSliceReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(

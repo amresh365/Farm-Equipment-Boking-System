@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { StarIcon } from "@heroicons/react/24/solid";
+import { useSelector, useDispatch } from "react-redux";
 import { useGetEquipmentDetailsQuery } from "../slices/equipmentApiSlice";
 const BookingScreen = () => {
   const { state } = useLocation();
@@ -12,6 +13,11 @@ const BookingScreen = () => {
     bookingAddress: "",
   });
 
+  const { id, bookingAddress, date, time } = useSelector(
+    (state) => state.bookEquipment
+  );
+
+  console.log(id);
   const {
     data: equipment,
     isLoading,

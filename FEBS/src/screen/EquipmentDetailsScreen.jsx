@@ -5,9 +5,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useGetEquipmentDetailsQuery } from "../slices/equipmentApiSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { equipmentList } from "../data/Equipments";
-import { bookEquipment } from "../slices/orderItemSlice";
+import { bookEquipment } from "../slices/bookEquipSlice";
 const EquipmentDetailScreen = () => {
-  const [selectedDates, setSelectedDates] = useState("");
+  const [selectedDates, setSelectedDates] = useState({
+    start: null,
+  });
   const [bookingAddress, setBookingAddress] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
   const [bookedTimes] = useState(["10:00 AM", "02:00 PM"]); // Example booked times
@@ -30,8 +32,9 @@ const EquipmentDetailScreen = () => {
   ];
 
   const navigate = useNavigate();
-  const { selectedEquipment } = useSelector((state) => state.orderEquipment);
-  console.log(selectedEquipment);
+  const { selectedEquipment } = useSelector((state) => state.bookEquipment);
+  // console.log(selectedEquipment);
+  console.log(selectedDates.start);
   const dispatch = useDispatch();
   const { id } = useParams();
   const {
@@ -195,7 +198,12 @@ const EquipmentDetailScreen = () => {
                       <input
                         type="date"
                         className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                        onChange={(e) => setSelectedDates(...selectedDates)}
+                        onChange={(e) =>
+                          setSelectedDates({
+                            ...selectedDates,
+                            start: e.target.value,
+                          })
+                        }
                       />
                     </div>
                   </div>
