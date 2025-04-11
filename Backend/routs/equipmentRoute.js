@@ -1,11 +1,13 @@
 import express from "express";
-import { getEquipments } from "../controllers/equipmentController";
-import { createBooking } from "../controllers/bookingController";
-import { protect, admin } from "../middleware/authMiddleware";
+import { protect, admin } from "../middleware/authMiddleware.js";
 import {
   createEquipment,
   getEquipmentById,
-} from "../controllers/equipmentController";
+  getEquipments,
+} from "../controllers/equipmentController.js";
+
 const router = express.Router();
 router.route("/").get(getEquipments).post(protect, admin, createEquipment);
 router.route("/:id").get(getEquipmentById);
+
+export default router;

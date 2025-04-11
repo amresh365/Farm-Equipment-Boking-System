@@ -1,44 +1,38 @@
 export const equipmentList = [
   {
-    id: 1,
     name: "Tractor",
-    type: "Agriculture Equipment",
+    type: "Tractor",
     rateType: "hour",
     rate: 1000,
     rating: 4.5,
     owner: {
-      name: "Farm Equipment Co.",
       rating: 4.8,
       location: "Punjab",
       contact: "+91 98765 43210",
     },
     specs: {
-      horsepower: "45 HP",
       fuelType: "Diesel",
       hoursUsed: 1200,
       usage: "Field operations",
     },
     reviews: [
       {
-        id: 1,
-        user: "Rahul Sharma",
         rating: 4.5,
         comment: "Well-maintained tractor, great service",
       },
       {
-        id: 2,
         user: "Priya Singh",
         rating: 5,
         comment: "Smooth booking process",
       },
     ],
     location: "Punjab",
-    image:
+    images: [
       "https://www.deere.co.in/assets/images/region-1/products/tractors/john-deere-e-series-cab.jpg",
+    ],
     availability: ["2023-08-20", "2023-08-25"],
   },
   {
-    id: 2,
     name: "Cultivator",
     type: "Agriculture Equipment",
     rateType: "Bigha",
@@ -57,25 +51,23 @@ export const equipmentList = [
     },
     reviews: [
       {
-        id: 1,
         user: "Rahul Sharma",
         rating: 4.5,
         comment: "Well-maintained tractor, great service",
       },
       {
-        id: 2,
         user: "Priya Singh",
         rating: 5,
         comment: "Smooth booking process",
       },
     ],
     location: "Uttar Pradesh",
-    image:
+    images: [
       "https://5.imimg.com/data5/SELLER/Default/2020/10/LC/OB/AN/93496763/agriculture-implements-500x500.jpg",
+    ],
     availability: ["2023-08-22", "2023-08-27"],
   },
   {
-    id: 7,
     name: "Rotavator",
     type: "Agriculture Equipment",
     rateType: "hour",
@@ -94,25 +86,23 @@ export const equipmentList = [
     },
     reviews: [
       {
-        id: 1,
         user: "Rahul Sharma",
         rating: 4.5,
         comment: "Well-maintained tractor, great service",
       },
       {
-        id: 2,
         user: "Priya Singh",
         rating: 5,
         comment: "Smooth booking process",
       },
     ],
     location: "Punjab",
-    image:
+    images: [
       "https://mlhobevaucyf.i.optimole.com/w:1200/h:742/q:mauto/f:best/ig:avif/https://novo3ds.in/wp-content/uploads/2023/06/AG213_Sakthiman_rotavator.jpg",
+    ],
     availability: ["2023-08-26", "2023-08-31"],
   },
   {
-    id: 8,
     name: "Harrow",
     type: "Agriculture Equipment",
     rateType: "Bigha",
@@ -131,25 +121,23 @@ export const equipmentList = [
     },
     reviews: [
       {
-        id: 1,
         user: "Rahul Sharma",
         rating: 4.5,
         comment: "Well-maintained tractor, great service",
       },
       {
-        id: 2,
         user: "Priya Singh",
         rating: 5,
         comment: "Smooth booking process",
       },
     ],
     location: "Haryana",
-    image:
+    images: [
       "https://5.imimg.com/data5/SELLER/Default/2023/12/371789195/EN/IC/XG/53496462/gobind-disc-harrow.png",
+    ],
     availability: ["2023-08-27", "2023-09-01"],
   },
   {
-    id: 3,
     name: "Harvester",
     type: "Agriculture Equipment",
     rateType: "hour",
@@ -168,25 +156,23 @@ export const equipmentList = [
     },
     reviews: [
       {
-        id: 1,
         user: "Rahul Sharma",
         rating: 4.5,
         comment: "Well-maintained tractor, great service",
       },
       {
-        id: 2,
         user: "Priya Singh",
         rating: 5,
         comment: "Smooth booking process",
       },
     ],
     location: "Uttar Pradesh",
-    image:
+    images: [
       "https://www.jangeer.com/img/89/posts/1705918080Combine-Harvester.jpg",
+    ],
     availability: ["2023-08-21", "2023-08-26"],
   },
   {
-    id: 4,
     name: "Seeder",
     type: "Agriculture Equipment",
     rateType: "Bigha",
@@ -205,25 +191,23 @@ export const equipmentList = [
     },
     reviews: [
       {
-        id: 1,
         user: "Rahul Sharma",
         rating: 4.5,
         comment: "Well-maintained tractor, great service",
       },
       {
-        id: 2,
         user: "Priya Singh",
         rating: 5,
         comment: "Smooth booking process",
       },
     ],
     location: "Punjab",
-    image:
-      "https://ksagrotech.org/wp-content/uploads/2023/08/WhatsApp-Image-2023-08-07-at-3.31.56-PM.jpeg",
+    images: [
+      "https://ksagrotech.org/wp-content/uploads/2023/08/WhatsApp-images-2023-08-07-at-3.31.56-PM.jpeg",
+    ],
     availability: ["2023-08-23", "2023-08-28"],
   },
   {
-    id: 5,
     name: "Sprayer",
     type: "Agriculture Equipment",
     rateType: "Bigha",
@@ -242,26 +226,24 @@ export const equipmentList = [
     },
     reviews: [
       {
-        id: 1,
         user: "Rahul Sharma",
         rating: 4.5,
         comment: "Well-maintained tractor, great service",
       },
       {
-        id: 2,
         user: "Priya Singh",
         rating: 5,
         comment: "Smooth booking process",
       },
     ],
     location: "Haryana",
-    image:
+    images: [
       "https://media.istockphoto.com/id/468867687/photo/farmer-spraying-pesticide.jpg?s=612x612&w=0&k=20&c=AGcFwPIeR-U4DD1Jz5nyMWNOuccxoSXMYXvaqp3axu0=",
+    ],
     availability: ["2023-08-25", "2023-08-30"],
   },
 
   {
-    id: 9,
     name: "Thresher",
     type: "Agriculture Equipment",
     rateType: "hour",
@@ -280,25 +262,23 @@ export const equipmentList = [
     },
     reviews: [
       {
-        id: 1,
         user: "Rahul Sharma",
         rating: 4.5,
         comment: "Well-maintained tractor, great service",
       },
       {
-        id: 2,
         user: "Priya Singh",
         rating: 5,
         comment: "Smooth booking process",
       },
     ],
     location: "Uttar Pradesh",
-    image:
+    images: [
       "https://5.imimg.com/data5/EE/XO/HN/SELLER-482290/multicrop-thresher-tractor-model.jpg",
+    ],
     availability: ["2023-08-28", "2023-09-02"],
   },
   {
-    id: 9,
     name: "Paddy(Dhan) Thresher",
     type: "Agriculture Equipment",
     rateType: "hour",
@@ -317,25 +297,23 @@ export const equipmentList = [
     },
     reviews: [
       {
-        id: 1,
         user: "Rahul Sharma",
         rating: 4.5,
         comment: "Well-maintained tractor, great service",
       },
       {
-        id: 2,
         user: "Priya Singh",
         rating: 5,
         comment: "Smooth booking process",
       },
     ],
     location: "Uttar Pradesh",
-    image:
+    images: [
       "https://5.imimg.com/data5/SELLER/Default/2024/1/376053426/YL/YH/FL/3889907/paddy-thresher.png",
+    ],
     availability: ["2023-08-28", "2023-09-02"],
   },
   {
-    id: 10,
     name: "Winnowing Machine",
     type: "Agriculture Equipment",
     rateType: "hour",
@@ -354,24 +332,21 @@ export const equipmentList = [
     },
     reviews: [
       {
-        id: 1,
         user: "Rahul Sharma",
         rating: 4.5,
         comment: "Well-maintained tractor, great service",
       },
       {
-        id: 2,
         user: "Priya Singh",
         rating: 5,
         comment: "Smooth booking process",
       },
     ],
     location: "Punjab",
-    image: "https://m.media-amazon.com/images/I/61+IlsqIcKL.jpg",
+    images: ["https://m.media-amazon.com/images/I/61+IlsqIcKL.jpg"],
     availability: ["2023-08-29", "2023-09-03"],
   },
   {
-    id: 11,
     name: "Baler",
     type: "Agriculture Equipment",
     rateType: "hour",
@@ -390,25 +365,23 @@ export const equipmentList = [
     },
     reviews: [
       {
-        id: 1,
         user: "Rahul Sharma",
         rating: 4.5,
         comment: "Well-maintained tractor, great service",
       },
       {
-        id: 2,
         user: "Priya Singh",
         rating: 5,
         comment: "Smooth booking process",
       },
     ],
     location: "Haryana",
-    image:
+    images: [
       "https://www.deere.co.in/assets/images/region-1/implements/compact-round-baler/Round_Baler_John_Deere_India__large_70dbbfa73362de5df2fb99e9f729699ff72ca86f.png",
+    ],
     availability: ["2023-08-30", "2023-09-04"],
   },
   {
-    id: 12,
     name: "Mower",
     type: "Agriculture Equipment",
     rateType: "hour",
@@ -427,26 +400,24 @@ export const equipmentList = [
     },
     reviews: [
       {
-        id: 1,
         user: "Rahul Sharma",
         rating: 4.5,
         comment: "Well-maintained tractor, great service",
       },
       {
-        id: 2,
         user: "Priya Singh",
         rating: 5,
         comment: "Smooth booking process",
       },
     ],
     location: "Uttar Pradesh",
-    image:
+    images: [
       "https://media.istockphoto.com/id/520135246/photo/mowing-the-grass.jpg?s=612x612&w=0&k=20&c=9ZlrazlneuDiU6Rdv9nYq0k_ZNoGwJ_JXTiE8djJGVc=",
+    ],
     availability: ["2023-08-31", "2023-09-05"],
   },
 
   {
-    id: 14,
     name: "Fertilizer Spreader",
     type: "Agriculture Equipment",
     rateType: "Bigha",
@@ -465,26 +436,24 @@ export const equipmentList = [
     },
     reviews: [
       {
-        id: 1,
         user: "Rahul Sharma",
         rating: 4.5,
         comment: "Well-maintained tractor, great service",
       },
       {
-        id: 2,
         user: "Priya Singh",
         rating: 5,
         comment: "Smooth booking process",
       },
     ],
     location: "Haryana",
-    image:
+    images: [
       "https://c8.alamy.com/comp/GHEH1K/tractor-and-fertilizer-spreader-in-field-GHEH1K.jpg",
+    ],
     availability: ["2023-09-02", "2023-09-07"],
   },
 
   {
-    id: 16,
     name: "Trooley",
     type: "Agriculture Equipment",
     rateType: "km",
@@ -503,25 +472,23 @@ export const equipmentList = [
     },
     reviews: [
       {
-        id: 1,
         user: "Rahul Sharma",
         rating: 4.5,
         comment: "Well-maintained tractor, great service",
       },
       {
-        id: 2,
         user: "Priya Singh",
         rating: 5,
         comment: "Smooth booking process",
       },
     ],
     location: "Punjab",
-    image:
+    images: [
       "https://m.media-amazon.com/images/I/5127tafZSqL._AC_UF1000,1000_QL80_.jpg",
+    ],
     availability: ["2023-09-04", "2023-09-09"],
   },
   {
-    id: 17,
     name: "Weeder",
     type: "Agriculture Equipment",
     rateType: "hour",
@@ -540,24 +507,21 @@ export const equipmentList = [
     },
     reviews: [
       {
-        id: 1,
         user: "Rahul Sharma",
         rating: 4.5,
         comment: "Well-maintained tractor, great service",
       },
       {
-        id: 2,
         user: "Priya Singh",
         rating: 5,
         comment: "Smooth booking process",
       },
     ],
     location: "Haryana",
-    image: "https://m.media-amazon.com/images/I/61PssoNRg8L.jpg",
+    images: ["https://m.media-amazon.com/images/I/61PssoNRg8L.jpg"],
     availability: ["2023-09-05", "2023-09-10"],
   },
   {
-    id: 17,
     name: "Rice Hulter",
     type: "Agriculture Equipment",
     rateType: "hour",
@@ -575,25 +539,23 @@ export const equipmentList = [
     },
     reviews: [
       {
-        id: 1,
         user: "Rahul Sharma",
         rating: 4.5,
         comment: "Well-maintained tractor, great service",
       },
       {
-        id: 2,
         user: "Priya Singh",
         rating: 5,
         comment: "Smooth booking process",
       },
     ],
     location: "Uttar Pradesh",
-    image:
+    images: [
       "https://5.imimg.com/data5/SELLER/Default/2023/11/357683196/VG/NO/VA/1848498/tractor-operated-rice-mill.jpg",
+    ],
     availability: ["2023-09-05", "2023-09-10"],
   },
   {
-    id: 18,
     name: "Sprinkler",
     type: "Agriculture Equipment",
     rateType: "hour",
@@ -612,24 +574,21 @@ export const equipmentList = [
     },
     reviews: [
       {
-        id: 1,
         user: "Rahul Sharma",
         rating: 4.5,
         comment: "Well-maintained tractor, great service",
       },
       {
-        id: 2,
         user: "Priya Singh",
         rating: 5,
         comment: "Smooth booking process",
       },
     ],
     location: "Uttar Pradesh",
-    image: "https://m.media-amazon.com/images/I/81FF8M5eH9L.jpg",
+    images: ["https://m.media-amazon.com/images/I/81FF8M5eH9L.jpg"],
     availability: ["2023-09-06", "2023-09-11"],
   },
   {
-    id: 18,
     name: "Laveler",
     type: "Agriculture Equipment",
     rateType: "hour",
@@ -647,24 +606,21 @@ export const equipmentList = [
     },
     reviews: [
       {
-        id: 1,
         user: "Rahul Sharma",
         rating: 4.5,
         comment: "Well-maintained tractor, great service",
       },
       {
-        id: 2,
         user: "Priya Singh",
         rating: 5,
         comment: "Smooth booking process",
       },
     ],
     location: "Uttar Pradesh",
-    image: "https://www.samyakagro.com/amp/images/gallery/ll6.gif",
+    images: ["https://www.samyakagro.com/amp/images/gallery/ll6.gif"],
     availability: ["2023-09-06", "2023-09-11"],
   },
   {
-    id: 19,
     name: "Backhoe Loader (jcb)",
     type: "Construction Equipment",
     rateType: "hour",
@@ -683,25 +639,23 @@ export const equipmentList = [
     },
     reviews: [
       {
-        id: 1,
         user: "Rahul Sharma",
         rating: 4.5,
         comment: "Well-maintained tractor, great service",
       },
       {
-        id: 2,
         user: "Priya Singh",
         rating: 5,
         comment: "Smooth booking process",
       },
     ],
     location: "Maharashtra",
-    image:
+    images: [
       "https://centralization-images.s3.ap-south-1.amazonaws.com/Infrajunction-prod/jcb_3dx_backhoe_loader1686911730_2b5e36e8a3.jpg",
+    ],
     availability: ["2023-09-07", "2023-09-12"],
   },
   {
-    id: 20,
     name: "Crane",
     type: "Construction Equipment",
     rateType: "hour",
@@ -720,21 +674,20 @@ export const equipmentList = [
     },
     reviews: [
       {
-        id: 1,
         user: "Rahul Sharma",
         rating: 4.5,
         comment: "Well-maintained tractor, great service",
       },
       {
-        id: 2,
         user: "Priya Singh",
         rating: 5,
         comment: "Smooth booking process",
       },
     ],
     location: "Gujarat",
-    image:
-      "https://www.ace-cranes.com/images/productimage/165676020120220702.png",
+    images: [
+      "https://www.ace-cranes.com/images/productimages/165676020120220702.png",
+    ],
     availability: ["2023-09-08", "2023-09-13"],
   },
 ];

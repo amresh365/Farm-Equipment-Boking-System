@@ -1,38 +1,64 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { StarIcon } from "@heroicons/react/24/solid";
 import { useSelector, useDispatch } from "react-redux";
 import { useGetEquipmentDetailsQuery } from "../slices/equipmentApiSlice";
+import { useCreateBookingMutation } from "../slices/bookingsApiSlice";
 const BookingScreen = () => {
   const { state } = useLocation();
-  console.log(state);
+  // console.log(state);
   // const equipment = state?.equipment || {};
   const [bookingDetails, setBookingDetails] = useState({
-    bookingtDate: "",
+    bookingDate: "",
+    bookingTime: "",
     bookingAddress: "",
   });
 
-  const { id, bookingAddress, date, time } = useSelector(
-    (state) => state.bookEquipments
-  );
+  const dispatch = useDispatch();
+  const [createBooking] = useCreateBookingMutation();
 
+  const {
+    id: equipmentId,
+    bookingAddress,
+    date,
+    time,
+  } = useSelector((state) => state.bookEquipments);
+  const { _id: userId } = useSelector((state) => state.auth.userInfo);
+  // console.log(userId);
+  useEffect(() => {
+    setBookingDetails((prevDetails) => ({
+      bookingDate: date.start, // Correctly updating the bookingDate
+      bookingAddress: bookingAddress, // Assuming you want to set the available bookingAddress
+      bookingTime: time, // Assuming you want to set the available bookingTime
+    }));
+  }, []);
+
+  // console.log(bookingDetails);
   const {
     data: equipment,
     isLoading,
     isError,
-  } = useGetEquipmentDetailsQuery(id);
-  // console.log(equipment);
+  } = useGetEquipmentDetailsQuery(equipmentId, {
+    refetchOnMountOrArgChange: true, // Refetch when the component mounts or the equipmentId changes
+  });
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   // Handle booking submission
-  //   console.log({
-  //     equipmentId: equipment.id,
-  //     ...bookingDetails,
-  //     totalAmount,
-  //   });
-  // };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      dispatch(
+        createBooking({
+          user: userId,
+          equipment: equipmentId,
+          bookingDate: bookingDetails.bookingDate,
+          bookingAddress: bookingDetails.bookingAddress,
+          bookingTime: bookingDetails.bookingTime,
+        })
+      );
+    } catch (error) {
+      console.error("Error creating booking:", error);
+    }
+  };
 
   return (
     <>
@@ -51,7 +77,7 @@ const BookingScreen = () => {
                 <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
                   <div className="flex items-start">
                     <img
-                      src={equipment.image}
+                      src={equipment.images[0]}
                       alt={equipment.name}
                       className="w-32 h-32 object-cover rounded-lg"
                     />
@@ -86,8 +112,8 @@ const BookingScreen = () => {
                   </h2>
 
                   <form className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div className="">
                         <label className="block text-sm font-medium text-gray-700 mb-2">
                           Booking Date
                         </label>
@@ -95,7 +121,7 @@ const BookingScreen = () => {
                           type="date"
                           required
                           className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                          value={bookingDetails.startDate}
+                          value={bookingDetails.bookingDate}
                           onChange={(e) =>
                             setBookingDetails({
                               ...bookingDetails,
@@ -103,10 +129,35 @@ const BookingScreen = () => {
                             })
                           }
                         />
+                        <level className="block text-sm font-bold  px-2 mt-2 py-3  ">
+                          {bookingDetails.bookingDate}
+                        </level>
+                      </div>
+                      <div>
+                        <lavel lavel className="block   mb-2">
+                          <p className="block text-sm font-medium text-gray-700 ">
+                            Bookking Time
+                          </p>
+                          <span className="text-sm font-bold    mt-2 py-3">
+                            {" "}
+                            {time}
+                          </span>
+                        </lavel>
+                      </div>
+                      <div>
+                        <lavel lavel className="block   mb-2">
+                          <p className="block text-sm font-medium text-gray-700 ">
+                            Bookking Address
+                          </p>
+                          <span className="text-sm font-bold    mt-2 py-3">
+                            {" "}
+                            {bookingDetails.bookingAddress}
+                          </span>
+                        </lavel>
                       </div>
                     </div>
 
-                    <div>
+                    {/* <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Delivery Type
                       </label>
@@ -123,9 +174,9 @@ const BookingScreen = () => {
                         <option value="pickup">Self Pickup</option>
                         <option value="delivery">Delivery to Farm</option>
                       </select>
-                    </div>
+                    </div> */}
 
-                    {bookingDetails.deliveryType === "delivery" && (
+                    {/* {bookingDetails.deliveryType === "delivery" && (
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
                           Delivery Address
@@ -142,9 +193,9 @@ const BookingScreen = () => {
                           required={bookingDetails.deliveryType === "delivery"}
                         />
                       </div>
-                    )}
+                    )} */}
 
-                    <div>
+                    {/* <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Payment Method
                       </label>
@@ -161,14 +212,15 @@ const BookingScreen = () => {
                         <option value="Ofline">Ofline</option>
                         <option value="Online">Online</option>
                       </select>
-                    </div>
+                    </div> */}
 
                     <div className="border-t pt-6">
                       <button
                         type="submit"
                         className="w-full bg-green-600 hover:bg-green-700 text-white py-3 px-4 rounded-md font-medium transition-colors"
+                        onClick={handleSubmit}
                       >
-                        {/* Confirm Booking for ₹{totalAmount} */}
+                        Confirm Booking
                       </button>
                     </div>
                   </form>
@@ -176,48 +228,6 @@ const BookingScreen = () => {
               </div>
 
               {/* Price Summary */}
-              <div className="lg:sticky lg:top-16 h-fit">
-                <div className="bg-white rounded-lg shadow-sm p-6">
-                  <h3 className="text-lg font-bold text-gray-900 mb-4">
-                    Price Summary
-                  </h3>
-
-                  <div className="space-y-4">
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Daily Rate</span>
-                      <span>
-                        {/* ₹{equipment.dailyRate} x {totalDays} days */}
-                      </span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Subtotal</span>
-                      {/* <span>₹{subTotal}</span> */}
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Security Deposit</span>
-                      {/* <span>₹{deposit}</span> */}
-                    </div>
-                    {bookingDetails.deliveryType === "delivery" && (
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Delivery Fee</span>
-                        <span>₹500</span>
-                      </div>
-                    )}
-                    <div className="border-t pt-4">
-                      <div className="flex justify-between font-bold">
-                        <span>Total Amount</span>
-                        <span>
-                          ₹
-                          {/* {totalAmount +
-                            (bookingDetails.deliveryType === "delivery"
-                              ? 500
-                              : 0)} */}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>

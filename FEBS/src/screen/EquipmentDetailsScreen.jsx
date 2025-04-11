@@ -4,7 +4,6 @@ import { EqualsIcon, StarIcon } from "@heroicons/react/24/solid";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetEquipmentDetailsQuery } from "../slices/equipmentApiSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { equipmentList } from "../data/Equipments";
 import { myEquipment } from "../slices/bookEquipSlice";
 const EquipmentDetailScreen = () => {
   const [selectedDates, setSelectedDates] = useState({
@@ -15,6 +14,10 @@ const EquipmentDetailScreen = () => {
   const [bookedTimes] = useState(["10:00 AM", "02:00 PM"]); // Example booked times
   const isBooked = (time) => bookedTimes.includes(time);
   const isSelected = (time) => time === selectedTime;
+
+  const onTimeSelect = (time) => {
+    setSelectedTime(time);
+  };
   // Generate time slots (adjust as needed)
   const timeSlots = [
     "09:00 AM",
@@ -33,17 +36,17 @@ const EquipmentDetailScreen = () => {
 
   const navigate = useNavigate();
   const { selectedEquipments } = useSelector((state) => state.bookEquipments);
-  console.log(selectedEquipments);
-  console.log(selectedDates.start);
+
   const dispatch = useDispatch();
   const { id } = useParams();
+
   const {
     data: equipment,
     isLoading,
     isError,
   } = useGetEquipmentDetailsQuery(id);
 
-  // console.log(equipment);
+  console.log(equipment);
 
   const handleTimeSelect = (time) => {
     if (!isBooked(time)) {
@@ -77,7 +80,7 @@ const EquipmentDetailScreen = () => {
               <div className="mb-6">
                 <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden">
                   <img
-                    src={equipment.image}
+                    src={equipment.images[0]}
                     alt={equipment.name}
                     className="w-full h-full object-cover"
                   />
@@ -139,15 +142,15 @@ const EquipmentDetailScreen = () => {
                 </h2>
                 <div className="flex items-center space-x-4">
                   <div className="flex-shrink-0 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white">
-                    {equipment.owner.name.charAt(0)}
+                    {equipment.name.charAt(0)}
                   </div>
                   <div>
-                    <h3 className="font-medium">{equipment.owner.name}</h3>
+                    <h3 className="font-medium">{equipment.name}</h3>
                     <div className="flex items-center space-x-1">
                       <StarIcon className="h-4 w-4 text-yellow-400" />
-                      <span className="text-sm">{equipment.owner.rating}</span>
+                      <span className="text-sm">{equipment.rating}</span>
                       <span className="text-gray-500 text-sm">
-                        • {equipment.owner.location}
+                        • {equipment.location}
                       </span>
                     </div>
                   </div>
@@ -160,7 +163,7 @@ const EquipmentDetailScreen = () => {
                   Reviews
                 </h2>
                 <div className="space-y-6">
-                  {equipment.reviews.map((review) => (
+                  {/* {equipment.reviews.map((review) => (
                     <div
                       key={review.id}
                       className="border-b pb-6 last:border-b-0"
@@ -172,7 +175,7 @@ const EquipmentDetailScreen = () => {
                       <p className="text-gray-600 mb-2">{review.comment}</p>
                       <p className="text-sm text-gray-500">- {review.user}</p>
                     </div>
-                  ))}
+                  ))} */}
                 </div>
               </div>
             </div>

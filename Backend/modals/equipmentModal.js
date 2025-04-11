@@ -20,12 +20,10 @@ const reviewSchema = new mongoose.Schema({
 });
 
 const equipmentSpecsSchema = new mongoose.Schema({
-  horsepower: String,
   fuelType: String,
   hoursUsed: Number,
   capacity: String,
   year: Number,
-  // Add other spec fields as needed
 });
 
 const equipmentSchema = new mongoose.Schema(
@@ -37,18 +35,36 @@ const equipmentSchema = new mongoose.Schema(
     type: {
       type: String,
       required: true,
-      enum: ["Tractor", "Harvester", "Irrigation", "Construction", "Other"],
+      enum: [
+        "Tractor",
+        "Harvester",
+        "Irrigation",
+        "Construction Equipment",
+        "Other",
+        "Agriculture Equipment",
+      ],
     },
-    dailyRate: {
+    rateType: {
+      type: String,
+      required: true,
+    },
+    rate: {
       type: Number,
       required: true,
     },
-    owner: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
+    // owner: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: "User",
+    //   required: false,
+    // },
+    // ownerDetails: {
+    //   rating: Number,
+    //   location: String,
+    //   contact: String,
+    // },
+    // reviews: [reviewSchema],
     specs: equipmentSpecsSchema,
+
     location: {
       type: String,
       required: true,
@@ -66,19 +82,11 @@ const equipmentSchema = new mongoose.Schema(
       min: 0,
       max: 5,
     },
-    reviews: [reviewSchema],
   },
   {
     timestamps: true,
-    toJSON: { virtuals: true },
-    toObject: { virtuals: true },
   }
 );
-
-// Virtual for formatted price
-equipmentSchema.virtual("formattedPrice").get(function () {
-  return `₹${this.dailyRate}/day`;
-});
 
 const Equipment = mongoose.model("Equipment", equipmentSchema);
 

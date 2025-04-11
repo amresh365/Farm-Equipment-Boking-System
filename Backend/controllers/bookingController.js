@@ -1,5 +1,5 @@
-import Booking from "../modals/bookingModal";
-import { asyncHandler } from "../middleware/asyncHandler";
+import Booking from "../modals/bookingModal.js";
+import asyncHandler from "../middleware/asyncHandler.js";
 //@desc Create Booking
 //@route POST/api/bookings
 //@access Private
@@ -9,6 +9,8 @@ const createBooking = asyncHandler(async (req, res) => {
     user,
     equipment,
     bookingDate,
+    bookingAddress: req.body.bookingAddress,
+    bookingTime: req.body.bookingTime,
   });
   const createdBooking = await booking.save();
   res.status(201).json(createdBooking);

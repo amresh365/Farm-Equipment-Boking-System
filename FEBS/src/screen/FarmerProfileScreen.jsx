@@ -164,7 +164,7 @@ const FarmerProfileScreen = () => {
             </div>
 
             <div>
-              <h3 className="text-xl font-semibold mb-4">Rental History</h3>
+              <h3 className="text-xl font-semibold mb-4">Booking History</h3>
               {farmerProfile.rentalHistory.map((history) => (
                 <div
                   key={history.id}
@@ -204,7 +204,7 @@ const FarmerProfileScreen = () => {
           </div>
         )}
 
-        {/* Rented Equipment */}
+        {/* Booking Equipment */}
         {activeTab === "equipment" && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Mock equipment data */}
@@ -217,7 +217,6 @@ const FarmerProfileScreen = () => {
               </div>
               <div className="space-y-2 text-gray-600">
                 <p>Owner: Farm Equipment Co.</p>
-                <p>Rental Period: 5 days</p>
                 <p>Hours Used: 15h</p>
                 <p>Next Payment Due: 2023-08-25</p>
               </div>

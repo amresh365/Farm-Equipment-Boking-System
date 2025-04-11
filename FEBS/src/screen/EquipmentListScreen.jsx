@@ -82,7 +82,7 @@ const EquipmentListScreen = () => {
                   {/* Image Carousel */}
                   <div className="relative h-48 bg-gray-200">
                     <img
-                      src={equipment.image}
+                      src={equipment.images[0]}
                       alt={equipment.name}
                       className="w-full h-full object-cover"
                     />
@@ -130,7 +130,7 @@ const EquipmentListScreen = () => {
                       </div>
                       <button
                         className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors"
-                        onClick={() => onClickHandler(equipment.id)}
+                        onClick={() => onClickHandler(equipment._id)}
                       >
                         Book Now
                       </button>
